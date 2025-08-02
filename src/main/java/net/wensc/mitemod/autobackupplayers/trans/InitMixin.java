@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin({DedicatedServer.class})
-public class InitTrans {
-    public InitTrans() {
+public class InitMixin {
+    public InitMixin() {
     }
 
     @Inject(
@@ -18,7 +18,7 @@ public class InitTrans {
             at = {@At("RETURN")}
     )
     private void injectInit(CallbackInfoReturnable<Boolean> callback) {
-        MinecraftServer f = MinecraftServer.F();
-        BackupThread.setWorldDir(f.getFolderName(), f);
+        MinecraftServer server = MinecraftServer.getServer();
+        BackupThread.setWorldDir(server.getFolderName(), server);
     }
 }

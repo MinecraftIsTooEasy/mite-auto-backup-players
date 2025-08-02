@@ -1,0 +1,18 @@
+{
+	"schemaVersion": 1,
+	"id": "auto_backup_players",
+	"version": "${version}",
+	"depends": {
+		"fishmodloader": ">=3.1.0"
+	},
+	"environment": "server",
+	"name": "AutoBackupPlayers",
+	"description": "",
+	"authors": ["wensc"],
+	"entrypoints": {
+		"main": ["net.wensc.mitemod.autobackupplayers.Main"]
+	},
+	"mixins": [
+		"auto_backup_players.mixins.json"
+	]
+}

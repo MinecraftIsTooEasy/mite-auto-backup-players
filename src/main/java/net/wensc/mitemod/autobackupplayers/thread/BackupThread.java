@@ -13,8 +13,9 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import net.minecraft.ChatMessage;
-import net.minecraft.EnumChatFormat;
+
+import net.minecraft.ChatMessageComponent;
+import net.minecraft.EnumChatFormatting;
 import net.minecraft.server.MinecraftServer;
 
 public class BackupThread extends Thread {
@@ -146,20 +147,20 @@ public class BackupThread extends Thread {
                 long end = System.currentTimeMillis();
                 long took = end - start;
                 this.server.getLogAgent().logInfo("玩家存档 " + this.worldFile.getName() + " 压缩备份完成，耗时：" + took + " ms");
-                this.sendChatMsgToAllPlayers(ChatMessage.createFromText("服务端玩家存档备份完成!耗时:" + took + "ms"));
+                this.sendChatMsgToAllPlayers(ChatMessageComponent.createFromText("服务端玩家存档备份完成!耗时:" + took + "ms"));
                 isRunning = true;
                 Thread.sleep(Math.max(delay - 10000L, 10000L));
-                this.sendChatMsgToAllPlayers(ChatMessage.createFromText("将在10秒后开始备份存档!可能会有些许卡顿").setColor(EnumChatFormat.values()[6]));
+                this.sendChatMsgToAllPlayers(ChatMessageComponent.createFromText("将在10秒后开始备份存档!可能会有些许卡顿").setColor(EnumChatFormatting.values()[6]));
                 Thread.sleep(10000L);
-                this.sendChatMsgToAllPlayers(ChatMessage.createFromText("服务器开始备份...").setColor(EnumChatFormat.DARK_GREEN));
+                this.sendChatMsgToAllPlayers(ChatMessageComponent.createFromText("服务器开始备份...").setColor(EnumChatFormatting.DARK_GREEN));
             } catch (NullPointerException | InterruptedException | FileNotFoundException var7) {
                 var7.printStackTrace();
             }
         }
     }
 
-    private void sendChatMsgToAllPlayers(ChatMessage msg) {
-        this.server.getConfigurationManager().sendChatMsg(ChatMessage.createFromText("[Server] ").appendComponent(msg));
+    private void sendChatMsgToAllPlayers(ChatMessageComponent msg) {
+        this.server.getConfigurationManager().sendChatMsg(ChatMessageComponent.createFromText("[Server] ").appendComponent(msg));
     }
 
     private void setWorldFile(File file) {
