@@ -10,7 +10,7 @@
 	"description": "",
 	"authors": ["wensc"],
 	"entrypoints": {
-		"main": ["net.wensc.mitemod.autobackupplayers.Main"]
+		"server": ["net.wensc.mitemod.autobackupplayers.Main"]
 	},
 	"mixins": [
 		"auto_backup_players.mixins.json"
